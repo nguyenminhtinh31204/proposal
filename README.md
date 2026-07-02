@@ -1,25 +1,29 @@
-# 🧾 AI Invoice Scanner – Giải pháp tự động hóa trích xuất và phân tích hóa đơn bằng trí tuệ nhân tạo trên nền tảng AWS
+# 🧾 Serverless AI Invoice Scanner – Giải pháp tự động hóa trích xuất và quản lý hóa đơn bằng AI trên nền tảng AWS
 
-> 🔍 *Một hệ thống thông minh giúp doanh nghiệp tự động thu nhận, trích xuất dữ liệu từ hóa đơn đầu vào (dạng ảnh/PDF), phân tích nội dung bằng AI, và lưu trữ thông tin có cấu trúc vào cơ sở dữ liệu – tất cả được triển khai trên kiến trúc serverless của AWS, tận dụng sức mạnh của Amazon Textract, Bedrock và các dịch vụ đám mây hiện đại.*
+> 🔍 *Một hệ thống thông minh giúp người dùng tải lên hóa đơn dạng ảnh hoặc PDF, tự động trích xuất nội dung bằng Amazon Textract, chuẩn hóa dữ liệu bằng OpenAI API, lưu trữ thông tin có cấu trúc vào Amazon DynamoDB và quản lý hóa đơn thông qua giao diện web React được triển khai bằng AWS Amplify Hosting.*
 
 ---
 
 ## 📝 Tóm tắt dự án
-Trong bối cảnh chuyển đổi số diễn ra mạnh mẽ, việc tự động hóa quy trình xử lý hóa đơn đầu vào đang trở thành nhu cầu thiết yếu của nhiều doanh nghiệp. Các hóa đơn thường tồn tại ở dạng ảnh, PDF hoặc bản scan không có cấu trúc, gây khó khăn trong việc trích xuất, lưu trữ và kiểm tra dữ liệu. Việc nhập liệu thủ công không chỉ tốn thời gian mà còn dễ xảy ra sai sót, ảnh hưởng đến độ chính xác trong kế toán và kiểm toán.
 
-**AI Invoice Scanner** được xây dựng nhằm giải quyết bài toán này thông qua một hệ thống xử lý hóa đơn tự động dựa trên trí tuệ nhân tạo (AI) và nền tảng đám mây AWS. Giải pháp cho phép người dùng tải lên hóa đơn dưới dạng ảnh hoặc PDF, sử dụng **Amazon Textract** để trích xuất văn bản, và **Amazon Bedrock (Titan/Claude)** để phân tích ngữ nghĩa, nhận diện các trường thông tin quan trọng như: số hóa đơn, ngày phát hành, mã số thuế, đơn vị bán hàng, danh sách mặt hàng, tổng tiền, v.v.
+Trong bối cảnh chuyển đổi số diễn ra mạnh mẽ, việc tự động hóa quy trình xử lý hóa đơn đầu vào đang trở thành nhu cầu thiết yếu của nhiều doanh nghiệp. Hóa đơn thường tồn tại dưới nhiều định dạng như PDF, ảnh chụp, bản scan hoặc tài liệu không có cấu trúc. Điều này gây khó khăn cho việc trích xuất, kiểm tra, lưu trữ và truy xuất dữ liệu.
 
-Toàn bộ thông tin trích xuất được lưu vào **Amazon DynamoDB**, cho phép truy xuất nhanh và hỗ trợ đối soát dễ dàng. Hệ thống được triển khai theo kiến trúc **serverless** với các dịch vụ chủ đạo như **AWS Lambda**, **S3**, **API Gateway**, **Cognito** và **Amplify**, đảm bảo khả năng mở rộng linh hoạt, vận hành ổn định và tiết kiệm chi phí.
-Đối tượng sử dụng gồm các doanh nghiệp vừa và nhỏ, bộ phận kế toán, công ty kiểm toán và các tổ chức cần xử lý lượng lớn hóa đơn. Giao diện người dùng trực quan được xây dựng bằng **React + Amplify**, giúp cả người không chuyên cũng dễ dàng sử dụng.
+**Serverless AI Invoice Scanner** được xây dựng nhằm giải quyết bài toán này thông qua một hệ thống xử lý hóa đơn tự động dựa trên trí tuệ nhân tạo và kiến trúc serverless trên AWS. Hệ thống cho phép người dùng tải lên hóa đơn, sử dụng **Amazon Textract** để trích xuất văn bản, sau đó dùng **OpenAI API** để phân tích và chuẩn hóa dữ liệu hóa đơn thành cấu trúc rõ ràng như mã hóa đơn, tên khách hàng, ngày hóa đơn, tổng tiền, loại tiền tệ và các thông tin liên quan.
 
-### 🎯 Lợi ích nổi bật:
-- **Tiết kiệm thời gian & chi phí**: Tự động hóa hoàn toàn quy trình nhập liệu.
-- **Tăng độ chính xác**: Giảm thiểu lỗi do con người.
-- **Dễ truy xuất & kiểm soát**: Nhờ lưu trữ dữ liệu có cấu trúc trong DynamoDB.
-- **Bảo mật cao**: Tích hợp xác thực người dùng qua Amazon Cognito.
-- **Dễ mở rộng**: Có thể tích hợp với ERP, CRM hoặc dashboard BI.
+Dữ liệu sau khi xử lý được lưu vào **Amazon DynamoDB**, cho phép truy xuất nhanh thông qua các API được triển khai bằng **Amazon API Gateway** và **AWS Lambda**. Phần giao diện người dùng được xây dựng bằng **ReactJS**, triển khai bằng **AWS Amplify Hosting** và tích hợp **Amazon Cognito** để hỗ trợ đăng ký, đăng nhập người dùng.
 
-Với sự kết hợp giữa AI và nền tảng AWS, dự án không chỉ mang tính thực tiễn cao mà còn mở rộng tiềm năng ứng dụng trong nhiều lĩnh vực như kế toán – tài chính, bán lẻ, logistics và dịch vụ công.
+{{% notice info %}}
+Trong phiên bản hiện tại của project, hệ thống sử dụng **OpenAI API** thay cho Amazon Bedrock. OpenAI API là dịch vụ bên ngoài AWS, vì vậy API key cần được lưu an toàn ở backend, ví dụ trong Lambda environment variables hoặc AWS Secrets Manager.
+{{% /notice %}}
+
+### 🎯 Lợi ích nổi bật
+
+- **Tự động hóa quy trình nhập liệu**: Giảm thời gian đọc và nhập hóa đơn thủ công.
+- **Tăng độ chính xác**: Kết hợp OCR của Amazon Textract và khả năng phân tích ngữ nghĩa của OpenAI API.
+- **Dễ truy xuất dữ liệu**: Hóa đơn được lưu dưới dạng dữ liệu có cấu trúc trong DynamoDB.
+- **Quản lý trực quan**: Frontend hỗ trợ xem danh sách, xem chi tiết, tìm kiếm, gắn tags, đánh dấu starred và export Excel.
+- **Bảo mật người dùng**: Tích hợp Amazon Cognito cho đăng ký và đăng nhập.
+- **Dễ mở rộng**: Kiến trúc serverless giúp hệ thống tự động scale theo số lượng request.
 
 ---
 
@@ -27,40 +31,56 @@ Với sự kết hợp giữa AI và nền tảng AWS, dự án không chỉ man
 
 ### 🧾 Tình hình hiện tại
 
-Hiện nay, phần lớn doanh nghiệp vừa và nhỏ (SME) tại Việt Nam vẫn xử lý hóa đơn đầu vào theo phương pháp thủ công, dù đã áp dụng hóa đơn điện tử. Mỗi ngày, doanh nghiệp tiếp nhận từ **16–33 hóa đơn** với định dạng đa dạng như giấy, ảnh chụp, hoặc PDF. Kế toán viên phải mở file, đọc thủ công các trường như số hóa đơn, ngày phát hành, nhà cung cấp, thuế GTGT..., rồi nhập tay vào phần mềm kế toán – mất trung bình **~3 phút mỗi hóa đơn**.
+Nhiều doanh nghiệp, đặc biệt là doanh nghiệp vừa và nhỏ, vẫn xử lý hóa đơn đầu vào theo cách thủ công hoặc bán tự động. Nhân viên kế toán thường phải mở từng file hóa đơn, đọc các trường quan trọng như số hóa đơn, ngày phát hành, tên khách hàng, tổng tiền, thuế và đơn vị bán hàng, sau đó nhập lại vào phần mềm quản lý.
 
-Quy trình này không chỉ tốn nhiều thời gian mà còn tiềm ẩn tỷ lệ sai sót **10–15%** (KPMG, 2023), gây khó khăn trong tra cứu, đối soát và kiểm toán nội bộ. Mặc dù 100% doanh nghiệp đã dùng hóa đơn điện tử từ 2022 (Tổng cục Thuế), nhưng vẫn thiếu công cụ hỗ trợ tự động hóa toàn diện.
+Quy trình này có một số hạn chế:
 
-➡️ **Nhu cầu cấp thiết**: Một giải pháp có khả năng **tiếp nhận đa định dạng**, **trích xuất thông minh**, **tích hợp linh hoạt**, giúp giảm gánh nặng vận hành và nâng cao hiệu quả kế toán.
+- Tốn nhiều thời gian khi số lượng hóa đơn tăng.
+- Dễ xảy ra lỗi nhập liệu do con người.
+- Khó tìm kiếm dữ liệu khi hóa đơn chỉ được lưu dưới dạng file ảnh hoặc PDF.
+- Khó thống kê, đối chiếu và kiểm toán.
+- Khó tích hợp với hệ thống quản lý hoặc báo cáo dữ liệu.
+
+➡️ **Nhu cầu đặt ra** là xây dựng một hệ thống có thể tiếp nhận hóa đơn đa định dạng, tự động trích xuất nội dung, chuẩn hóa dữ liệu bằng AI, lưu trữ tập trung và hỗ trợ truy xuất nhanh.
 
 ### ⚠️ Những thách thức chính
 
-1. **Định dạng hóa đơn không đồng nhất**: Tồn tại dưới nhiều dạng (ảnh mờ, scan, PDF khóa bảo vệ...) khiến các công cụ thông thường không thể đọc tự động.
-2. **Khối lượng xử lý lớn & lặp lại**: Hàng trăm – nghìn hóa đơn mỗi tháng gây quá tải cho nhân sự kế toán.
-3. **Tỷ lệ lỗi nhập liệu cao**: Lỗi do con người dễ xảy ra, ảnh hưởng đến báo cáo tài chính và tuân thủ thuế.
-4. **Khó tra cứu & đối chiếu**: Dữ liệu không cấu trúc gây khó khăn khi kiểm toán hoặc tìm kiếm.
-5. **Khó tích hợp hệ thống kế toán/ERP**: Các công cụ xử lý thường hoạt động độc lập, không có khả năng tích hợp.
-6. **Yêu cầu bảo mật ngày càng cao**: Dữ liệu tài chính nhạy cảm đòi hỏi xử lý và lưu trữ theo chuẩn bảo mật (VD: GDPR, luật ATTT).
+1. **Định dạng hóa đơn đa dạng**  
+   Hóa đơn có thể là PDF, ảnh chụp, bản scan hoặc hình ảnh có chất lượng khác nhau.
+
+2. **Dữ liệu không có cấu trúc**  
+   Nội dung hóa đơn thường không theo cùng một mẫu cố định, gây khó khăn cho việc trích xuất thông tin.
+
+3. **Sai sót khi nhập liệu thủ công**  
+   Con người có thể nhập sai số tiền, ngày tháng, mã hóa đơn hoặc tên khách hàng.
+
+4. **Khó tìm kiếm và phân loại**  
+   Nếu chỉ lưu hóa đơn dưới dạng file, việc tìm theo khách hàng, ngày, số tiền hoặc trạng thái xử lý sẽ khó khăn.
+
+5. **Yêu cầu bảo mật dữ liệu**  
+   Hóa đơn có thể chứa thông tin tài chính hoặc thông tin doanh nghiệp quan trọng, cần được bảo vệ khi lưu trữ và truyền tải.
+
+6. **Nhu cầu mở rộng hệ thống**  
+   Khi số lượng người dùng hoặc số lượng hóa đơn tăng, hệ thống cần có khả năng mở rộng mà không cần quản lý server thủ công.
 
 ### 👥 Tác động đến các bên liên quan
 
 | Bên liên quan | Tác động |
-|---------------|----------|
-| **Kế toán – Tài chính** | Quá tải công việc lặp lại, dễ sai sót, năng suất thấp |
-| **Kiểm toán nội bộ** | Khó kiểm tra, đánh giá rủi ro do dữ liệu không tổ chức |
-| **Ban điều hành** | Dữ liệu thiếu minh bạch gây ảnh hưởng quyết định chiến lược |
-| **Nhà cung cấp & khách hàng** | Gặp chậm trễ thanh toán, đối chiếu sai lệch, giảm uy tín |
-| **Bộ phận CNTT** | Gặp khó khi tích hợp quy trình thủ công vào hệ thống số hóa |
-| **Cơ quan quản lý** | Dữ liệu không truy vết rõ ràng → rủi ro vi phạm pháp luật |
+|---|---|
+| **Kế toán – Tài chính** | Giảm công việc nhập liệu lặp lại, tiết kiệm thời gian xử lý hóa đơn. |
+| **Quản lý doanh nghiệp** | Có dữ liệu hóa đơn tập trung, dễ kiểm tra và theo dõi. |
+| **Kiểm toán nội bộ** | Dễ truy xuất hóa đơn và dữ liệu liên quan khi cần đối chiếu. |
+| **Bộ phận CNTT** | Có hệ thống serverless dễ triển khai, dễ bảo trì, không cần vận hành máy chủ. |
+| **Người dùng cuối** | Có giao diện trực quan để upload, xem, tìm kiếm và quản lý hóa đơn. |
 
-### 💥 Hệ quả kinh doanh nếu không giải quyết
+### 💥 Hệ quả nếu không giải quyết
 
-- 💸 **Tăng chi phí vận hành**: Nhân sự làm việc lặp đi lặp lại, chi phí cao nhưng hiệu quả thấp.
-- 🧯 **Tăng rủi ro pháp lý**: Nhập liệu sai dễ gây sai lệch sổ sách, báo cáo tài chính.
-- ⏳ **Giảm khả năng ra quyết định**: Thiếu dữ liệu tức thời, chính xác.
-- 🤝 **Mất lòng tin đối tác**: Lỗi trong thanh toán – đối chiếu ảnh hưởng đến mối quan hệ kinh doanh.
-- 🐢 **Cản trở chuyển đổi số**: Là điểm nghẽn nếu không tự động hóa kịp thời.
-- 📉 **Mất lợi thế cạnh tranh**: Doanh nghiệp lạc hậu hơn đối thủ áp dụng công nghệ AI.
+- Tăng chi phí vận hành do phụ thuộc nhiều vào nhập liệu thủ công.
+- Dễ phát sinh sai lệch dữ liệu kế toán.
+- Khó tìm kiếm hóa đơn cũ khi cần đối chiếu.
+- Chậm trễ trong quy trình kiểm tra và phê duyệt.
+- Khó mở rộng khi số lượng hóa đơn tăng cao.
+- Cản trở quá trình chuyển đổi số của doanh nghiệp.
 
 ---
 
@@ -68,509 +88,623 @@ Quy trình này không chỉ tốn nhiều thời gian mà còn tiềm ẩn tỷ
 
 ### 🧩 Tổng quan kiến trúc
 
-Hệ thống **AI Invoice Scanner** được xây dựng hoàn toàn trên kiến trúc **Serverless** của AWS. Thiết kế theo hướng **event-driven**, tự động hóa luồng xử lý: **tải hóa đơn → trích xuất → phân tích → lưu trữ → truy xuất**, giúp loại bỏ hoàn toàn máy chủ vật lý, chi phí linh hoạt theo mức sử dụng và dễ dàng mở rộng.
+Hệ thống **Serverless AI Invoice Scanner** được xây dựng theo kiến trúc serverless và event-driven trên AWS. Luồng xử lý chính gồm:
 
-#### 🎯 Mục tiêu thiết kế kiến trúc
-- Tự động hóa toàn bộ quy trình xử lý hóa đơn.
-- Tận dụng Textract và Bedrock để trích xuất dữ liệu phi cấu trúc.
-- Xác thực người dùng bảo mật với Amazon Cognito.
-- Tối ưu chi phí vận hành thông qua mô hình serverless.
-- Đảm bảo mở rộng linh hoạt, dễ bảo trì, không phụ thuộc hạ tầng máy chủ.
+```txt
+React Frontend
+    ↓
+Amazon Cognito
+    ↓
+Amazon API Gateway
+    ↓
+UploadInvoiceFileFunction
+    ↓
+Amazon S3 /uploads
+    ↓
+S3 Event Trigger
+    ↓
+ProcessInvoiceFunction
+    ↓
+Amazon Textract
+    ↓
+OpenAI API
+    ↓
+Amazon DynamoDB
+    ↓
+InvoiceManagementFunction
+    ↓
+API Gateway
+    ↓
+React Frontend
+```
 
-### 🔄 Luồng xử lý dữ liệu
+Kiến trúc này giúp tách biệt rõ các chức năng:
 
-Quy trình xử lý hóa đơn trong hệ thống AI Invoice Scanner diễn ra theo các bước tuần tự như sau:
+- Frontend dùng để tương tác với người dùng.
+- API Gateway đóng vai trò điểm vào của backend.
+- Lambda xử lý nghiệp vụ.
+- S3 lưu file hóa đơn gốc.
+- Textract trích xuất văn bản.
+- OpenAI API chuẩn hóa dữ liệu.
+- DynamoDB lưu dữ liệu hóa đơn.
+- CloudWatch hỗ trợ theo dõi log và debug.
 
-1. **Người dùng truy cập hệ thống** thông qua một địa chỉ domain (được cấu hình bằng Route 53). Giao diện người dùng được triển khai bằng ReactJS và lưu trữ trên AWS Amplify.
+### 🎯 Mục tiêu thiết kế kiến trúc
 
-2. **Người dùng đăng nhập hoặc đăng ký tài khoản** thông qua Amazon Cognito. Hệ thống sử dụng token xác thực JWT để kiểm soát quyền truy cập và bảo vệ API.
-
-3. **Khi người dùng tải lên một hóa đơn (POST request)**:
-   - File hóa đơn (PDF hoặc ảnh) được gửi qua API Gateway và lưu trữ tạm thời vào Amazon S3.
-   - Sau khi lưu thành công, S3 tự động kích hoạt một hàm Lambda.
-   - Lambda này sẽ lần lượt thực hiện các tác vụ:
-     - Gọi **Amazon Textract** để trích xuất văn bản và cấu trúc (bảng, biểu mẫu) từ hóa đơn.
-     - Gửi kết quả OCR sang **Amazon Bedrock**, nơi mô hình AI như Titan hoặc Claude sẽ phân tích ngữ nghĩa và xác định các trường thông tin quan trọng như: số hóa đơn, ngày phát hành, mã số thuế, tổng tiền, danh sách sản phẩm,...
-     - Dữ liệu được chuẩn hóa và lưu trữ có cấu trúc vào **Amazon DynamoDB** để phục vụ truy xuất nhanh sau này.
-
-4. **Khi người dùng muốn truy xuất các hóa đơn đã xử lý (GET request)**:
-   - Giao diện gửi yêu cầu GET đến API Gateway, sau đó chuyển tiếp đến một Lambda khác.
-   - Lambda này sẽ truy vấn dữ liệu từ DynamoDB dựa trên thông tin người dùng và ID hóa đơn.
-   - Kết quả truy xuất được trả về frontend để hiển thị cho người dùng một cách trực quan.
-
-Quy trình này hoàn toàn tự động, sự kiện kích hoạt theo mô hình event-driven, đảm bảo xử lý nhanh chóng, chính xác và tiết kiệm tài nguyên vận hành.
-
-### 🧱 Các khối chức năng chính
-
-Hệ thống được tổ chức thành nhiều lớp chức năng độc lập, mỗi lớp đảm nhiệm một vai trò cụ thể:
-
-- **Frontend Layer**  
-  Giao diện người dùng xây dựng bằng ReactJS, triển khai qua AWS Amplify, cho phép người dùng tải hóa đơn, xem kết quả, đăng nhập và tương tác hệ thống một cách trực quan.
-
-- **Auth Layer (Amazon Cognito)**  
-  Cung cấp khả năng đăng ký, đăng nhập, xác thực bằng JWT token và phân quyền người dùng. Dữ liệu người dùng được quản lý trong User Pool.
-
-- **API Gateway Layer**  
-  Đóng vai trò là điểm giao tiếp giữa frontend và backend. Hỗ trợ định tuyến request đến các Lambda functions, xác thực token Cognito, logging và giới hạn truy cập (rate limiting).
-
-- **Processing Layer**  
-  Gồm 2 Lambda chính:
-  - Lambda #1 xử lý tác vụ upload: Kích hoạt bởi S3 event, gọi Textract → Bedrock → lưu kết quả vào DynamoDB.
-  - Lambda #2 xử lý truy vấn: Đáp ứng yêu cầu GET từ frontend để trả về dữ liệu hóa đơn đã xử lý.
-
-- **AI Processing Layer**  
-  Gồm:
-  - Amazon Textract: Thực hiện nhận diện và trích xuất nội dung từ hóa đơn (OCR).
-  - Amazon Bedrock: Phân tích ngữ nghĩa nội dung từ Textract để phân loại trường dữ liệu như mã số thuế, số tiền, ngày, v.v.
-
-- **Storage Layer**  
-  - Amazon S3: Lưu trữ file gốc (PDF, hình ảnh) do người dùng tải lên.
-  - Amazon DynamoDB: Lưu kết quả trích xuất ở dạng JSON có cấu trúc, truy xuất nhanh chóng theo user và invoice ID.
-    
-### 🧰 Các dịch vụ AWS được sử dụng
-
-| Dịch vụ         | Vai trò chính                          | Ghi chú                                                                 |
-|------------------|------------------------------------------|------------------------------------------------------------------------|
-| **Amazon S3**     | Lưu trữ hóa đơn đầu vào                 | Tự động kích hoạt Lambda khi có file mới                              |
-| **AWS Lambda**    | Xử lý nghiệp vụ                        | Serverless, không cần vận hành máy chủ                                |
-| **Amazon Textract** | OCR nội dung từ hóa đơn                 | Nhận diện văn bản, bảng biểu, form và bố cục                           |
-| **Amazon Bedrock** | Phân tích ngữ nghĩa & gán nhãn dữ liệu | Dùng model Titan hoặc Claude để phân tích logic ngữ cảnh               |
-| **Amazon DynamoDB**| Cơ sở dữ liệu lưu kết quả xử lý       | Truy vấn nhanh với cấu trúc key-value, mở rộng không giới hạn          |
-| **API Gateway**   | Định tuyến HTTP giữa frontend ↔ backend | Có tích hợp xác thực Cognito và logging                                |
-| **AWS Amplify**   | Hosting ứng dụng frontend ReactJS      | Tích hợp CI/CD, Cognito, API Gateway                                  |
-| **Amazon Cognito**| Xác thực và phân quyền người dùng     | Hỗ trợ đăng nhập bằng JWT, OAuth2                                     |
-| **Route 53**      | Cung cấp tên miền và DNS               | Hỗ trợ HTTPS, SSL/TLS, có thể tích hợp CloudFront để tăng tốc tải     |
-
-### 🧬 Thiết kế các thành phần
-
-#### 1. Giao diện người dùng (ReactJS + Amplify)
-- Hiển thị danh sách hóa đơn, nút tải lên file, xem kết quả đã xử lý.
-- Tích hợp xác thực người dùng từ Cognito và giao tiếp API Gateway để thực hiện các thao tác POST/GET.
-
-#### 2. Xác thực và phân quyền (Amazon Cognito)
-- Cung cấp chức năng đăng ký, đăng nhập, reset mật khẩu.
-- Quản lý user pool, tạo và xác minh JWT token.
-- Phân quyền truy cập tài nguyên API và dữ liệu người dùng.
-
-#### 3. API Gateway
-- Nhận request từ frontend và định tuyến đến Lambda tương ứng.
-- Kết hợp authorizer của Cognito để bảo vệ endpoint.
-- Hỗ trợ logging, throttling, CORS và kiểm soát phiên bản API.
-
-#### 4. AWS Lambda
-- Lambda #1:
-  - Nhận event từ S3 khi người dùng tải lên file.
-  - Gọi Textract để OCR.
-  - Gửi kết quả OCR đến Bedrock để phân tích.
-  - Chuẩn hóa dữ liệu và lưu vào DynamoDB.
-- Lambda #2:
-  - Nhận request từ API Gateway.
-  - Truy vấn DynamoDB theo user và invoice ID.
-  - Trả dữ liệu về frontend.
-
-#### 5. AI Processing Layer (Textract + Bedrock)
-- **Textract**: Đọc được bố cục tài liệu, bảng biểu, trường form; hỗ trợ tốt cho hóa đơn đa định dạng.
-- **Bedrock**: Phân tích nội dung OCR để xác định các trường dữ liệu có ngữ nghĩa như mã số thuế, đơn vị bán hàng, tổng tiền.
-
-#### 6. Lưu trữ hóa đơn và dữ liệu
-- **S3**: Lưu trữ hóa đơn gốc (PDF, JPG, PNG).
-- **DynamoDB**: Lưu kết quả phân tích ở dạng document JSON. Có thể truy vấn theo user ID, invoice ID hoặc ngày upload.
-
-#### 7. Tên miền và DNS (Route 53)
-- Định tuyến subdomain riêng (VD: `scanner.yourdomain.com`) đến frontend.
-- Có thể kết hợp với CloudFront để cải thiện tốc độ và bảo mật HTTPS.
-
-#### 8. Giám sát và mở rộng (optional)
-- **CloudWatch**: Ghi log, cảnh báo khi Lambda lỗi hoặc quá tải.
-- **AWS X-Ray**: Truy vết hoạt động Lambda theo dòng thời gian để tối ưu hiệu năng.
-
-### 🔐 Kiến trúc bảo mật
-
-- **Amazon Cognito**: Quản lý người dùng, xác thực và phân quyền bằng JWT.
-- **IAM Roles**: Thiết lập quyền tối thiểu cho Lambda, S3, DynamoDB.
-- **Mã hóa dữ liệu**:
-  - **At rest**: Dữ liệu trên S3 và DynamoDB được mã hóa bằng KMS.
-  - **In transit**: Tất cả kết nối sử dụng HTTPS/TLS để đảm bảo bảo mật truyền tải.
-- **API Gateway**:
-  - Xác thực bằng Cognito Authorizer.
-  - Giới hạn tần suất truy cập (rate limiting).
-  - Ghi log và phân tích truy cập bất thường.
-- **Tường lửa ứng dụng web (WAF)** *(optional)*:
-  - Bảo vệ khỏi các tấn công như SQLi, XSS, brute force.
-- **CloudTrail & CloudWatch**:
-  - Theo dõi toàn bộ hoạt động truy cập hệ thống.
-  - Hỗ trợ truy vết điều tra sự cố và tuân thủ pháp lý.
-
-### 📈 Thiết kế khả năng mở rộng
-
-#### Theo số lượng hóa đơn
-- Lambda có thể xử lý hàng nghìn sự kiện song song.
-- Textract và Bedrock có thể chạy theo lô (batch) hoặc song song nhiều yêu cầu.
-- DynamoDB và S3 mở rộng không giới hạn theo vùng và dung lượng.
-
-#### Theo số lượng người dùng
-- Cognito hỗ trợ mở rộng tới hàng triệu người dùng.
-- Amplify và API Gateway tự động scale theo traffic người dùng.
-
-#### Theo loại hóa đơn & nghiệp vụ
-- Có thể huấn luyện Bedrock để hỗ trợ thêm các mẫu hóa đơn chuyên biệt.
-- Hỗ trợ thêm nhận dạng mã QR, chữ ký số, hoặc phân loại theo lĩnh vực (logistics, y tế, tài chính...).
-
-#### Theo khu vực địa lý
-- Dễ dàng triển khai frontend multi-region nhờ Route 53.
-- Sử dụng DynamoDB Global Tables để đồng bộ dữ liệu giữa các khu vực.
-
-#### Tích hợp hệ thống bên ngoài
-- Hệ thống có thể kết nối:
-  - Phần mềm kế toán (MISA, Fast, Bravo...)
-  - Hệ thống ERP nội bộ
-  - Dashboard phân tích (Amazon QuickSight, Tableau, PowerBI)
-  - Trợ lý ảo hoặc chatbot AI hỗ trợ kế toán
-
-#### Chiến lược mở rộng trong tương lai
-- Xây dựng ứng dụng mobile (React Native, Flutter).
-- Giao diện riêng cho kiểm toán viên/ban giám đốc.
-- Bổ sung AI chatbot hỗ trợ truy vấn hóa đơn bằng ngôn ngữ tự nhiên.
+- Tự động hóa quy trình xử lý hóa đơn từ upload đến lưu trữ.
+- Không cần quản lý server vật lý hoặc máy chủ EC2.
+- Tách riêng frontend, API, xử lý AI và lưu trữ dữ liệu.
+- Dễ mở rộng theo số lượng request và số lượng hóa đơn.
+- Dễ kiểm thử bằng Postman, AWS Console và frontend React.
+- Có khả năng bổ sung các chức năng nâng cao như tags, starred, tìm kiếm và export Excel.
 
 ---
 
-## ⚙️ 3. Triển khai kỹ thuật
+## 🔄 3. Luồng xử lý dữ liệu
 
-Phần này trình bày chi tiết kế hoạch hiện thực hóa giải pháp AI Invoice Scanner từ khía cạnh kỹ thuật, bao gồm quy trình triển khai theo từng giai đoạn, yêu cầu công nghệ, phương pháp phát triển, chiến lược kiểm thử và kế hoạch đưa hệ thống vào vận hành. Mục tiêu là đảm bảo chất lượng, giảm thiểu rủi ro và tối ưu hóa tiến độ.
+### 3.1. Luồng đăng nhập người dùng
 
-### 📌 Các Giai Đoạn Triển Khai
+1. Người dùng truy cập frontend được deploy bằng **AWS Amplify Hosting**.
+2. Frontend sử dụng **Amazon Cognito User Pool** để hỗ trợ đăng ký và đăng nhập.
+3. Sau khi đăng nhập thành công, người dùng có thể sử dụng các chức năng của hệ thống như upload hóa đơn, xem danh sách và tìm kiếm hóa đơn.
 
-Giải pháp được xây dựng theo mô hình Agile, chia thành các Sprint 1–2 tuần, lặp lại theo chu kỳ kiểm thử – cải tiến. Dưới đây là các giai đoạn chính:
+{{% notice info %}}
+Trong project hiện tại, Cognito được dùng chủ yếu cho frontend authentication. API Gateway chỉ được bảo vệ bằng Cognito nếu có cấu hình Cognito Authorizer riêng.
+{{% /notice %}}
 
-🔹 **Giai đoạn 1: Thiết kế & chuẩn bị hạ tầng**
-- Thu thập yêu cầu kỹ thuật và chức năng từ stakeholders.
-- Thiết lập các dịch vụ AWS: S3, DynamoDB, Lambda, Textract, Bedrock, Cognito, API Gateway, Amplify, Route 53.
-- Thiết kế sơ bộ kiến trúc hệ thống và UI/UX mockup.
+### 3.2. Luồng upload hóa đơn
 
-🔹 **Giai đoạn 2: Xây dựng chức năng xử lý hóa đơn (POST)**
-- Phát triển giao diện upload hóa đơn trên React + Tailwind + Amplify.
-- Cấu hình API Gateway và Lambda để tiếp nhận file từ người dùng.
-- Tích hợp Textract để OCR dữ liệu, sau đó phân tích bằng Bedrock.
-- Lưu kết quả có cấu trúc vào DynamoDB.
+1. Người dùng chọn file hóa đơn từ giao diện React.
+2. Frontend chuyển file sang Base64.
+3. Frontend gửi request đến API Gateway:
 
-🔹 **Giai đoạn 3: Xây dựng chức năng truy xuất hóa đơn (GET)**
-- Hiển thị danh sách hóa đơn đã xử lý và xem chi tiết kết quả.
-- Viết Lambda #2 để truy vấn DynamoDB dựa theo user/token.
-- Bảo vệ dữ liệu bằng xác thực Cognito theo từng user ID.
+```txt
+POST /uploads
+```
 
-🔹 **Giai đoạn 4: Tối ưu bảo mật & kiểm thử toàn diện**
-- Thiết lập IAM policies, S3 bucket policy, validation logic cho token và API.
-- Thực hiện kiểm thử tự động/manual với các trường hợp thường gặp.
-- Tích hợp giám sát hệ thống qua CloudWatch và CloudTrail.
+4. API Gateway chuyển request đến Lambda:
 
-🔹 **Giai đoạn 5: Đưa vào vận hành và theo dõi**
-- Deploy bản chính thức (production) qua Amplify CI/CD.
-- Theo dõi log và hiệu suất, xử lý lỗi, phản hồi người dùng.
-- Lên kế hoạch mở rộng tính năng dựa trên phản hồi.
+```txt
+UploadInvoiceFileFunction
+```
 
-### 🧪 Yêu Cầu Kỹ Thuật
+5. Lambda decode nội dung Base64 và upload file vào Amazon S3, thường trong thư mục:
 
-- **Nền tảng triển khai**: 100% sử dụng AWS (cloud-native, không dùng on-premise).
-- **Ngôn ngữ & công nghệ**:
-  - **Frontend**: ReactJS, Tailwind CSS (triển khai qua Amplify).
-  - **Backend**: Node.js (AWS Lambda functions).
-  - **AI & OCR**: Amazon Textract + Amazon Bedrock (Claude/Titan).
-  - **Lưu trữ**: Amazon S3 (file), DynamoDB (JSON kết quả).
-  - **Giao tiếp**: RESTful API qua API Gateway.
-  - **Xác thực người dùng**: Amazon Cognito.
+```txt
+uploads/
+```
 
-- **Hạ tầng**:
-  - Kiến trúc hoàn toàn serverless.
-  - Không sử dụng EC2, ECS, hay Kubernetes.
-  - Tự động scale và chi phí theo mức sử dụng.
+6. Sau khi file được lưu vào S3, S3 Event Notification kích hoạt Lambda xử lý hóa đơn.
 
-### 👨‍💻 Phương Pháp Phát Triển
+### 3.3. Luồng xử lý hóa đơn bằng AI
 
-- **Mô hình Agile – Scrum**:
-  - Sprint ngắn (1–2 tuần), có kiểm thử và demo nội bộ sau mỗi vòng lặp.
-  - Ưu tiên phát triển các chức năng nhỏ, dễ kiểm thử và có thể triển khai sớm (MVP-first).
+1. **ProcessInvoiceFunction** được kích hoạt khi có file mới trong S3.
+2. Lambda đọc file từ S3.
+3. Lambda gọi **Amazon Textract** để trích xuất văn bản từ hóa đơn.
+4. Kết quả OCR được gửi đến **OpenAI API** để phân tích và chuẩn hóa.
+5. Dữ liệu sau khi chuẩn hóa được lưu vào DynamoDB table:
 
-- **CI/CD qua Amplify + GitHub**:
-  - Mỗi lần commit sẽ tự động build và deploy frontend.
-  - Hệ thống staging & production tách biệt rõ ràng.
-  - Kiểm thử frontend: linting, unit test.
+```txt
+InvoiceData
+```
 
-- **Kiểm thử API bằng Postman & AWS Console**:
-  - Collection test đầy đủ các API (POST, GET).
-  - Ghi nhận thời gian phản hồi, mã lỗi và lỗi từ Textract/Bedrock/Lambda.
+Dữ liệu có thể bao gồm:
 
-### ✅ Chiến Lược Kiểm Thử
+| Trường dữ liệu | Mô tả |
+|---|---|
+| `InvoiceId` | Mã định danh duy nhất của hóa đơn. |
+| `CustomerName` | Tên khách hàng hoặc đơn vị liên quan. |
+| `InvoiceNumber` | Số hóa đơn. |
+| `InvoiceDate` | Ngày phát hành hóa đơn. |
+| `TotalAmount` | Tổng tiền trên hóa đơn. |
+| `Currency` | Loại tiền tệ như `VND`, `USD`, `EUR`. |
+| `Tags` | Danh sách nhãn người dùng gắn cho hóa đơn. |
+| `Starred` | Trạng thái đánh dấu hóa đơn quan trọng. |
+| `ProcessStatus` | Trạng thái xử lý, ví dụ `SUCCESS` hoặc `FAILED`. |
+| `ExtractedData` | Dữ liệu hóa đơn đã được trích xuất và chuẩn hóa. |
 
-- **Kiểm thử chức năng (Functional Testing)**:
-  - Đảm bảo đúng luồng POST → S3 → Lambda → Textract → Bedrock → DynamoDB.
-  - Truy xuất dữ liệu hóa đơn theo user/token với API GET.
+### 3.4. Luồng truy xuất và quản lý hóa đơn
 
-- **Kiểm thử bảo mật (Security Testing)**:
-  - Đảm bảo xác thực bắt buộc với Cognito trước mọi truy cập.
-  - Thử nghiệm tấn công bằng JWT giả mạo, lỗ hổng CORS, SQLi, XSS.
-  - Đánh giá phân quyền truy cập với từng loại role/user.
+Người dùng có thể gọi các API thông qua frontend hoặc Postman:
 
-- **Kiểm thử hiệu năng (Performance Testing)**:
-  - Upload đồng thời nhiều hóa đơn với kích thước lớn.
-  - Đo thời gian xử lý trung bình trên Lambda, Textract, Bedrock.
-  - Kiểm tra khả năng scale tự động khi tải tăng cao.
+```txt
+GET /invoice
+GET /invoice/{id}
+GET /invoice?name=<customer_name>
+PATCH /invoice/tags/{id}
+PATCH /invoice/starred/{id}
+```
 
-- **Kiểm thử ranh giới (Boundary Testing)**:
-  - Hóa đơn mờ, tay viết, góc nghiêng, dung lượng lớn (>10MB).
-  - Truy vấn dữ liệu với lọc theo thời gian, người dùng, loại hóa đơn.
+Các request này được API Gateway chuyển đến:
 
-### 📅 Kế Hoạch Triển Khai
+```txt
+InvoiceManagementFunction
+```
 
-| Giai đoạn                           | Thời lượng | Kết quả chính                             | Trách nhiệm              |
-|------------------------------------|------------|-------------------------------------------|--------------------------|
-| Thiết kế & thiết lập môi trường    | 1 tuần     | Kiến trúc hệ thống, cấu hình dịch vụ AWS  | DevOps / Kiến trúc sư   |
-| Xử lý hóa đơn đầu vào (POST flow)  | 2 tuần     | Lambda xử lý + tích hợp Textract + Bedrock| Backend Developer       |
-| Phát triển giao diện người dùng    | 1 tuần     | Upload và truy xuất hóa đơn (UI hoàn chỉnh)| Frontend Developer      |
-| Kiểm thử & bảo mật hệ thống        | 1 tuần     | IAM, xác thực, giám sát, logging           | DevSecOps                |
-| Triển khai và vận hành chính thức  | 1 tuần     | Production-ready, theo dõi hiệu suất       | Toàn nhóm (cross-team)  |
-
-**⏳ Tổng thời gian triển khai dự kiến: 6 tuần**
+Lambda này truy vấn hoặc cập nhật dữ liệu trong DynamoDB, sau đó trả kết quả về frontend.
 
 ---
 
-## 🗺️ 4. Lộ trình và cột mốc
+## 🧱 4. Các khối chức năng chính
 
-Phần này trình bày lộ trình triển khai tổng thể của dự án, các cột mốc quan trọng cần đạt được, những yếu tố phụ thuộc có thể ảnh hưởng đến tiến độ, và kế hoạch phân bổ nguồn lực. Mục tiêu là đảm bảo dự án được triển khai tuần tự, có kiểm soát và bám sát mục tiêu đề ra.
+### 4.1. Frontend Layer
 
-### 📆 Lộ Trình Dự Án
+Frontend được xây dựng bằng **ReactJS** và deploy bằng **AWS Amplify Hosting**. Giao diện hỗ trợ:
 
-| Tuần     | Giai đoạn chính                                | Mục tiêu cụ thể                                                                 |
-|----------|------------------------------------------------|----------------------------------------------------------------------------------|
-| Tuần 1   | Thiết kế & chuẩn bị môi trường AWS             | Thiết kế kiến trúc, setup S3, Lambda, Cognito, API Gateway, Bedrock, Textract… |
-| Tuần 2   | Xây dựng chức năng upload & xử lý hóa đơn (POST)| Upload file, xử lý bằng Textract + Bedrock, lưu vào DynamoDB                   |
-| Tuần 3   | Lưu dữ liệu & phát triển chức năng truy xuất   | Hiển thị hóa đơn đã xử lý qua GET API, phân quyền theo người dùng              |
-| Tuần 4   | Phát triển frontend                             | Xây dựng giao diện React, tích hợp API & Cognito                               |
-| Tuần 5   | Kiểm thử hệ thống & bảo mật                     | Kiểm thử chức năng, hiệu năng, auth, phân quyền, log và giám sát               |
-| Tuần 6   | Triển khai production & theo dõi                | Deploy chính thức, theo dõi CloudWatch, thu thập phản hồi người dùng           |
+- Đăng ký và đăng nhập bằng Cognito.
+- Upload hóa đơn bằng nút chọn file hoặc drag-and-drop.
+- Xem danh sách hóa đơn đã xử lý.
+- Xem chi tiết hóa đơn.
+- Tìm kiếm hóa đơn theo ID hoặc tên khách hàng.
+- Lọc theo tags.
+- Lọc theo ngày.
+- Sắp xếp theo ngày hoặc tổng tiền.
+- Gắn tags cho hóa đơn.
+- Đánh dấu hóa đơn quan trọng bằng starred.
+- Export dữ liệu hóa đơn ra file Excel.
+- Hiển thị trạng thái kết nối Cognito, API upload và API invoice.
 
-### 📌 Các Cột Mốc Quan Trọng
+### 4.2. Authentication Layer
 
-| STT | Cột mốc                                           | Dự kiến hoàn thành | Kết quả đầu ra                                                             |
-|-----|---------------------------------------------------|---------------------|----------------------------------------------------------------------------|
-| 1   | Hoàn thiện sơ đồ kiến trúc hệ thống               | Tuần 1              | File sơ đồ kiến trúc (Draw.io), bản mô tả các khối chức năng               |
-| 2   | Cấu hình các dịch vụ AWS cơ bản                   | Tuần 1              | S3, Lambda, DynamoDB, Textract, Bedrock, API Gateway, Cognito đã hoạt động |
-| 3   | Xử lý thành công hóa đơn đầu tiên bằng AI         | Tuần 2              | Dữ liệu văn bản được OCR + phân tích lưu vào DynamoDB                      |
-| 4   | Giao diện người dùng hoàn thiện chức năng upload  | Tuần 4              | Người dùng có thể upload hóa đơn, xác thực và xem kết quả trên UI          |
-| 5   | Kiểm thử xác thực và phân quyền người dùng        | Tuần 4              | Token và session kiểm tra hợp lệ, phân quyền truy cập theo user ID         |
-| 6   | Kiểm thử bảo mật và hiệu suất thành công           | Tuần 5              | Có test log, throttling, test auth, hiệu suất xử lý đồng thời               |
-| 7   | Triển khai bản production + hướng dẫn sử dụng      | Tuần 6              | Hệ thống vận hành ổn định, có tài liệu README, hướng dẫn người dùng         |
+Amazon Cognito cung cấp chức năng:
 
-### ⚠️ Các Yếu Tố Phụ Thuộc
+- User Pool.
+- Sign up.
+- Sign in.
+- Sign out.
+- Quản lý session người dùng.
+- Tích hợp với frontend thông qua `aws-amplify` và `@aws-amplify/ui-react`.
 
-| Yếu tố phụ thuộc                              | Ảnh hưởng đến tiến độ                         | Giải pháp đề xuất                                         |
-|-----------------------------------------------|-----------------------------------------------|----------------------------------------------------------|
-| Quyền truy cập AWS & vai trò IAM              | Không thể tạo tài nguyên AWS                  | Chuẩn bị trước IAM Role hoặc tài khoản admin             |
-| Hạn chế dịch vụ Bedrock hoặc Textract theo vùng| Không thể gọi API AI do bị giới hạn địa lý     | Ưu tiên sử dụng vùng `us-east-1` hoặc `ap-southeast-1`   |
-| Tốc độ phản hồi của Bedrock (AI model)        | Làm chậm pipeline xử lý hóa đơn               | Áp dụng batch xử lý + async nếu cần                      |
-| Tích hợp frontend ↔️ backend                  | Delay khi frontend chưa gọi đúng API backend | Đồng bộ yêu cầu API sớm, mock API và demo mỗi tuần       |
+### 4.3. API Gateway Layer
 
-### 👥 Kế Hoạch Phân Bổ Nguồn Lực
+API Gateway cung cấp REST API cho frontend và Postman.
 
-| Vai trò                          | Số lượng | Nhiệm vụ chính                                                                 |
-|----------------------------------|----------|--------------------------------------------------------------------------------|
-| Backend Developer                | 1        | Viết Lambda functions, xử lý S3 → Textract → Bedrock → DynamoDB               |
-| Frontend Developer               | 1        | Xây dựng giao diện web bằng React + Tailwind, tích hợp API + Cognito          |
-| DevOps / Cloud Engineer          | 1        | Setup AWS, IAM policy, triển khai Amplify, Route 53, CloudWatch giám sát      |
-| Tester (QA)                      | 1        | Viết test case, kiểm thử auth, hiệu năng, chức năng, phản hồi lỗi             |
-| Project Manager (kiêm nhiệm)     | 1        | Lập kế hoạch, giám sát tiến độ, tổ chức họp demo, báo cáo theo tuần           |
+Các API chính:
 
----
+| Method | Route | Chức năng |
+|---|---|---|
+| `POST` | `/uploads` | Upload file hóa đơn. |
+| `GET` | `/invoice` | Lấy danh sách hóa đơn. |
+| `GET` | `/invoice/{id}` | Lấy chi tiết hóa đơn theo ID. |
+| `GET` | `/invoice?name=<customer_name>` | Tìm kiếm hóa đơn theo tên khách hàng. |
+| `PATCH` | `/invoice/tags/{id}` | Cập nhật tags của hóa đơn. |
+| `PATCH` | `/invoice/starred/{id}` | Cập nhật trạng thái starred. |
 
-## 💰 5. Ước tính ngân sách
+### 4.4. Lambda Layer
 
-Phần này trình bày dự toán chi phí triển khai hệ thống AI Invoice Scanner cho giai đoạn thử nghiệm MVP (Minimum Viable Product), chia thành ba nhóm chi phí chính: hạ tầng, phát triển, và vận hành. Cuối cùng là phân tích lợi nhuận đầu tư (ROI) để đánh giá tính khả thi tài chính.
+Hệ thống sử dụng ba Lambda functions chính:
 
-### 📦 Chi Phí Hạ Tầng (AWS)
+| Lambda Function | Vai trò |
+|---|---|
+| `UploadInvoiceFileFunction` | Nhận file Base64 từ frontend, decode và upload vào S3. |
+| `ProcessInvoiceFunction` | Xử lý file mới từ S3, gọi Textract, gọi OpenAI API và lưu dữ liệu vào DynamoDB. |
+| `InvoiceManagementFunction` | Xử lý các API lấy danh sách, xem chi tiết, tìm kiếm, cập nhật tags và starred. |
 
-| Dịch vụ AWS              | Đơn giá (ước tính)                 | Khối lượng sử dụng/tháng           | Chi phí/tháng (USD) |
-|--------------------------|------------------------------------|-------------------------------------|----------------------|
-| Amazon S3                | $0.023/GB                          | 10 GB dữ liệu hóa đơn               | ~$0.23               |
-| AWS Lambda               | $0.20/1M invocations + compute     | ~500,000 invocations                | ~$3.00               |
-| Amazon Textract          | ~$1.50/1000 trang                  | ~3,000 trang OCR/tháng              | ~$4.50               |
-| Amazon Bedrock (Claude/Titan) | ~$0.002/1000 tokens input/output | ~1 triệu tokens                     | ~$2.00 – $5.00       |
-| Amazon DynamoDB          | On-Demand (50K read/write reqs)    | ~50K R/W requests                   | ~$3.00               |
-| Amazon Cognito           | Free Tier + $0.0055/user           | ~100 người dùng                     | ~$0.55               |
-| API Gateway              | $3.50/1M requests                  | ~400,000 requests                   | ~$1.50               |
-| Amplify Hosting          | ~$0.01/GB transfer + hosting       | 5GB hosting, 20GB bandwidth         | ~$2.00               |
-| Route 53 (DNS + Domain)  | ~$0.50/tháng + $12/năm domain      | 1 tên miền                          | ~$1.50               |
+### 4.5. AI Processing Layer
 
-👉 **Tổng chi phí hạ tầng (ước tính/tháng):** **~$20 – $25 USD**
+AI Processing Layer gồm hai thành phần:
 
-### 🛠️ Chi Phí Phát Triển
+| Thành phần | Vai trò |
+|---|---|
+| Amazon Textract | OCR và trích xuất văn bản từ hóa đơn. |
+| OpenAI API | Phân tích nội dung OCR và chuẩn hóa thành JSON có cấu trúc. |
 
-| Hạng mục                | Chi tiết                                                                 | Chi phí (ước tính) |
-|-------------------------|--------------------------------------------------------------------------|--------------------|
-| Nhân lực phát triển     | 2–3 thành viên, 6 tuần (sinh viên/thực tập)                             | $0 (nội bộ)        |
-| Công cụ phát triển      | VSCode, Postman, Draw.io (miễn phí)                                     | $0                 |
-| CI/CD                   | GitHub Free, tích hợp Amplify CI/CD                                     | $0                 |
-| Thiết kế UI/UX          | Figma Free hoặc thiết kế tay                                             | $0 – $100 (nếu thuê ngoài) |
+Ví dụ dữ liệu sau chuẩn hóa:
 
-👉 **Tổng chi phí phát triển:** **~$0 – $100 USD**
+```json
+{
+  "InvoiceNumber": "INV-001",
+  "CustomerName": "John Smith",
+  "InvoiceDate": "2025-06-20",
+  "TotalAmount": 125.50,
+  "Currency": "USD"
+}
+```
 
-### ⚙️ Chi Phí Vận Hành
+### 4.6. Storage Layer
 
-| Hạng mục                   | Mô tả                                                | Chi phí/tháng (USD) |
-|----------------------------|------------------------------------------------------|----------------------|
-| Giám sát CloudWatch        | Log & alarm (dưới 5GB miễn phí)                     | ~$0 – $1             |
-| Duy trì Domain & DNS       | Route 53 + gia hạn domain                           | ~$1.50               |
-| Tài nguyên AWS duy trì     | Hạ tầng như phần trên                               | ~$20 – $25           |
+Hệ thống sử dụng hai loại lưu trữ:
 
-👉 **Tổng chi phí vận hành duy trì:** **~$20 – $30 USD/tháng**
+| Dịch vụ | Mục đích |
+|---|---|
+| Amazon S3 | Lưu file hóa đơn gốc. |
+| Amazon DynamoDB | Lưu dữ liệu hóa đơn đã xử lý. |
 
-### 📊 Phân Tích ROI – Return on Investment
+DynamoDB table chính:
 
-#### 🎯 Giá trị mang lại:
-- Tiết kiệm **30–70% thời gian** xử lý hóa đơn so với nhập thủ công.
-- Giảm thiểu sai sót trong nhập liệu (OCR + AI phân tích chính xác hơn).
-- Dữ liệu tập trung, minh bạch, dễ truy xuất – hỗ trợ kiểm toán nội bộ.
-- Hệ thống có thể tích hợp thêm ERP, báo cáo BI hoặc chatbot tự động.
+```txt
+InvoiceData
+```
 
-#### 💹 Kịch bản ROI đơn giản:
+Các index có thể sử dụng:
 
-| Tiêu chí                              | Giá trị ước tính               |
-|---------------------------------------|--------------------------------|
-| Hóa đơn xử lý mỗi tháng               | 3,000 hóa đơn                  |
-| Chi phí xử lý thủ công/hóa đơn        | ~$0.20 – $0.50                 |
-| Chi phí xử lý tự động qua hệ thống    | ~$0.01 – $0.02                 |
-| Mức tiết kiệm mỗi tháng               | ~$500 – $1,000 USD             |
-| Chi phí vận hành hệ thống             | ~$25 USD                       |
+```txt
+CustomerName-index
+StarredInvoicesIndex
+```
 
-✅ **⟶ ROI > 20 lần** so với chi phí duy trì hàng tháng trong giai đoạn MVP.
+### 4.7. Monitoring Layer
 
----
+Amazon CloudWatch được sử dụng để:
 
-## ⚠️ 6. Đánh Giá Rủi Ro
-
-Dù hệ thống AI Invoice Scanner được xây dựng trên nền tảng serverless linh hoạt, vẫn tồn tại những rủi ro về kỹ thuật, bảo mật và vận hành. Phần này đưa ra ma trận đánh giá rủi ro, chiến lược giảm thiểu, và kế hoạch dự phòng để đảm bảo tính ổn định, an toàn và sẵn sàng phục hồi khi có sự cố.
-
-### 📋 Ma Trận Rủi Ro
-
-| ID   | Nguy cơ                                                                 | Mức độ tác động | Khả năng xảy ra | Mức độ rủi ro |
-|------|-------------------------------------------------------------------------|------------------|------------------|----------------|
-| R1   | Textract không nhận diện được hóa đơn mờ, scan lệch                    | Trung bình       | Cao              | Cao            |
-| R2   | Mô hình Bedrock phân loại sai thông tin trường dữ liệu                 | Cao              | Trung bình       | Cao            |
-| R3   | Mất quyền truy cập dịch vụ AWS (quota vượt mức, giới hạn API)          | Cao              | Thấp             | Trung bình     |
-| R4   | Rò rỉ dữ liệu do cấu hình sai Bucket Policy hoặc IAM                   | Rất cao          | Thấp             | Cao            |
-| R5   | Lỗi logic trong Lambda làm sai dữ liệu đầu ra                          | Cao              | Trung bình       | Cao            |
-| R6   | Người dùng không quen giao diện hoặc lỗi xác thực                      | Thấp             | Trung bình       | Thấp           |
-| R7   | API bị lạm dụng (DDoS, spam upload file lớn)                           | Trung bình       | Thấp             | Trung bình     |
-| R8   | AWS Textract hoặc Bedrock bị gián đoạn dịch vụ tại khu vực (Region)   | Rất cao          | Hiếm             | Trung bình     |
-
-### 🛡️ Chiến Lược Giảm Thiểu Rủi Ro
-
-| Rủi ro | Biện pháp phòng ngừa cụ thể |
-|--------|-------------------------------|
-| **R1** | Hướng dẫn người dùng upload đúng định dạng (PDF, ảnh rõ), kiểm tra trước khi xử lý. |
-| **R2** | Kiểm tra confidence score, kết hợp các luật validation đơn giản để tăng độ chính xác. |
-| **R3** | Thiết lập CloudWatch Alerts để cảnh báo quota, chủ động kiểm tra hạn mức API/service. |
-| **R4** | Áp dụng Bucket Policy chặn public access, mã hóa dữ liệu, IAM hạn quyền nghiêm ngặt. |
-| **R5** | Viết unit test và integration test kỹ lưỡng, log chi tiết từng bước xử lý trong Lambda. |
-| **R6** | Tối giản UI/UX, hướng dẫn rõ ràng, kiểm thử đa dạng trường hợp xác thực người dùng. |
-| **R7** | Kích hoạt throttling API Gateway, giới hạn kích cỡ file tại frontend, log IP upload. |
-| **R8** | Ưu tiên Region ổn định (us-east-1, ap-southeast-1), dự phòng Multi-Region từ đầu. |
-
-### 🧯 Kế Hoạch Dự Phòng Khi Có Sự Cố
-
-| Tình huống sự cố                                       | Giải pháp khẩn cấp                                                        |
-|--------------------------------------------------------|----------------------------------------------------------------------------|
-| Textract/Bedrock ngừng hoạt động                       | Queue hóa request bằng Amazon SQS hoặc EventBridge (xử lý bất đồng bộ).   |
-| Sai phân loại dữ liệu từ AI                            | Cho phép người dùng chỉnh sửa kết quả và ghi đè lên DynamoDB.             |
-| Gián đoạn dịch vụ ở một Region (Region Outage)         | Dự phòng Multi-Region từ đầu, sẵn sàng chuyển sang vùng khác.             |
-| Rò rỉ dữ liệu hoặc truy cập trái phép                  | Tạm ngừng dịch vụ, thu hồi quyền IAM, kiểm tra log CloudTrail.            |
-| Mất dữ liệu trên DynamoDB                              | Kích hoạt PITR (Point-In-Time Recovery) hoặc snapshot định kỳ.            |
-| Phản hồi người dùng về lỗi xử lý hóa đơn               | Tích hợp dashboard giám sát và hệ thống báo lỗi nội bộ (error reporting). |
+- Theo dõi log của Lambda.
+- Debug lỗi upload.
+- Debug lỗi Textract.
+- Debug lỗi OpenAI API.
+- Debug lỗi DynamoDB.
+- Kiểm tra lỗi CORS hoặc API Gateway.
+- Theo dõi trạng thái xử lý hóa đơn.
 
 ---
 
-## 🎯 7. Kết Quả Mong Đợi
+## 🧰 5. Các dịch vụ sử dụng
 
-Dự án **AI Invoice Scanner** hướng tới việc cung cấp một hệ thống tự động, chính xác và dễ mở rộng cho việc xử lý hóa đơn. Dưới đây là các mục tiêu cụ thể và giá trị mà hệ thống mong muốn đạt được.
+| Dịch vụ | Vai trò trong project |
+|---|---|
+| **AWS Amplify Hosting** | Deploy frontend React từ GitHub. |
+| **Amazon Cognito** | Xác thực người dùng cho frontend. |
+| **Amazon API Gateway** | Cung cấp các REST API endpoint. |
+| **AWS Lambda** | Xử lý backend logic theo mô hình serverless. |
+| **Amazon S3** | Lưu trữ file hóa đơn gốc trong thư mục `uploads/`. |
+| **Amazon Textract** | Trích xuất văn bản và dữ liệu từ file hóa đơn. |
+| **OpenAI API** | Chuẩn hóa dữ liệu OCR thành JSON có cấu trúc. |
+| **Amazon DynamoDB** | Lưu dữ liệu hóa đơn đã xử lý. |
+| **Amazon CloudWatch** | Ghi log và hỗ trợ giám sát hệ thống. |
+| **AWS IAM** | Cấp quyền cho Lambda truy cập S3, Textract, DynamoDB và CloudWatch. |
+| **AWS Secrets Manager** *(optional)* | Lưu OpenAI API key an toàn. |
+| **Route 53** *(optional)* | Cấu hình custom domain nếu cần. |
 
-### 📊 Các Chỉ Số Đánh Giá Thành Công
-
-| Chỉ số                                             | Mục tiêu                                             | Thời điểm đo lường           |
-|---------------------------------------------------|------------------------------------------------------|-------------------------------|
-| Tỷ lệ trích xuất thành công (Textract)            | ≥ 95% với hóa đơn rõ ràng                           | Sau 2 tuần vận hành           |
-| Độ chính xác phân loại thông tin (Bedrock)        | ≥ 90% (với prompt tốt hoặc fine-tune)               | Sau 1 tháng                   |
-| Tỷ lệ lỗi vận hành (system errors)                | ≤ 2% mỗi tháng                                      | Trong suốt giai đoạn MVP     |
-| Thời gian xử lý trung bình mỗi hóa đơn            | ≤ 7 giây                                             | Sau giai đoạn tối ưu          |
-| Số hóa đơn xử lý hàng ngày                        | ≥ 300 hóa đơn/ngày                                   | Từ tuần thứ 4 trở đi          |
-| Tỷ lệ người dùng quay lại                         | ≥ 60% trong vòng 1 tuần sau lần sử dụng đầu         | Sau khi UI chính thức ra mắt |
-| Tỷ lệ tiết kiệm chi phí so với xử lý thủ công     | ≥ 80%                                                | Sau 1 tháng vận hành          |
-
-### 💼 Lợi Ích Kinh Doanh
-
-- ⏱️ **Tiết kiệm thời gian**: Rút ngắn từ 3–5 phút xử lý thủ công xuống vài giây.
-- 👩‍💼 **Tối ưu nhân sự**: Giảm khối lượng nhập liệu thủ công, tập trung vào phân tích.
-- 🧾 **Giảm sai sót**: AI xử lý đồng nhất và chính xác hơn người.
-- 🔎 **Truy vết rõ ràng**: Lưu trữ tập trung, dễ tìm kiếm theo metadata.
-- 🔌 **Tích hợp ERP dễ dàng**: Dữ liệu có cấu trúc, dễ nối tiếp với hệ thống tài chính.
-
-### 🧠 Cải Tiến Kỹ Thuật
-
-- ⚙️ **Serverless hoàn toàn**: Không cần quản lý máy chủ, chi phí theo nhu cầu.
-- 🔁 **AI pipeline linh hoạt**: Textract → Lambda → Bedrock → DynamoDB.
-- 🤖 **Tự động hóa toàn trình**: Người dùng chỉ cần upload, không thao tác phức tạp.
-- 🌐 **Dễ tích hợp hệ sinh thái AWS**: Hỗ trợ mở rộng QuickSight, EventBridge, AppFlow.
-
-### 🔮 Giá Trị Dài Hạn
-
-- 🧾 **Chuyển đổi số tài chính**: Loại bỏ xử lý hóa đơn thủ công.
-- 🔁 **Nhân rộng cho các chứng từ khác**: Hợp đồng, phiếu thu, biên lai, v.v.
-- 🧱 **Tái sử dụng thành phần kỹ thuật**: Lambda, API, Cognito có thể dùng lại.
-- 💰 **Thương mại hóa**: Tiềm năng phát triển thành SaaS cho nhiều doanh nghiệp.
+{{% notice warning %}}
+Route 53 là thành phần tùy chọn. Nếu project không sử dụng custom domain, không cần đưa Route 53 vào phần triển khai bắt buộc.
+{{% /notice %}}
 
 ---
 
-## 📎 Phụ Lục
+## 🔐 6. Kiến trúc bảo mật
 
-### A. Thông Số Kỹ Thuật
+### 6.1. Xác thực người dùng
 
-| Hạng mục                    | Thông tin kỹ thuật cụ thể                                   |
-|----------------------------|-------------------------------------------------------------|
-| Giao diện người dùng       | ReactJS + Tailwind CSS, triển khai qua AWS Amplify         |
-| Ngôn ngữ backend           | Node.js (runtime cho AWS Lambda)                           |
-| API Gateway                | REST API (POST – Upload, GET – Truy xuất)                   |
-| Xác thực người dùng        | AWS Cognito (user pool, token-based auth)                  |
-| Lưu trữ file               | Amazon S3 (1 bucket riêng/user)                            |
-| OCR trích xuất văn bản     | Amazon Textract                                             |
-| Phân tích & phân loại AI   | Amazon Bedrock (Titan hoặc Claude)                         |
-| Cơ sở dữ liệu              | Amazon DynamoDB (partition theo UserId, InvoiceId)          |
-| Giám sát hệ thống          | CloudWatch + CloudTrail                                     |
-| Domain                     | AWS Route 53 (domain riêng, hỗ trợ HTTPS qua SSL cert)     |
-| CI/CD                      | GitHub + AWS Amplify CI/CD tích hợp                         |
-| Kiến trúc                  | 100% Serverless (không dùng EC2/K8s)                        |
-| Region triển khai          | ap-southeast-1 (Singapore) hoặc us-east-1 (Virginia)        |
+- Người dùng đăng nhập thông qua Amazon Cognito.
+- Frontend lưu session thông qua thư viện AWS Amplify.
+- Các thông tin như User Pool ID, App Client ID và Region được cấu hình trong frontend.
 
-### B. Bảng Tính Chi Phí (Ước Tính – Giai Đoạn MVP)
+### 6.2. Bảo vệ API
 
-| Dịch vụ            | Ước tính/tháng | Ghi chú                                          |
-|--------------------|----------------|-------------------------------------------------|
-| Amazon S3          | ~$0.23         | 10 GB hóa đơn (~100KB/hóa đơn)                  |
-| AWS Lambda         | ~$3.00         | ~500,000 lượt gọi GET + POST                    |
-| Amazon Textract    | ~$4.50         | Xử lý ~3,000 trang/tháng                         |
-| Amazon Bedrock     | ~$5.00         | ~1 triệu tokens input/output                    |
-| Amazon DynamoDB    | ~$3.00         | ~50K read/write requests                        |
-| Amazon Cognito     | ~$0.55         | 100 người dùng                                  |
-| API Gateway        | ~$1.50         | ~400,000 request                                |
-| Amplify Hosting    | ~$2.00         | 5GB hosting, 20GB băng thông                    |
-| Route 53           | ~$1.50         | Domain + DNS                                    |
+API Gateway có thể được bảo vệ bằng Cognito Authorizer nếu triển khai ở mức production. Trong bản demo hoặc MVP, API có thể chưa bật authorizer để đơn giản hóa kiểm thử.
 
-**👉 Tổng chi phí hạ tầng (ước tính/MVP):** `$20 – $25 USD/tháng`
+{{% notice info %}}
+Nếu bật Cognito Authorizer, frontend cần gửi Authorization header và API Gateway CORS phải cho phép header `Authorization`.
+{{% /notice %}}
 
-### C. Sơ Đồ Kiến Trúc Hệ Thống
+### 6.3. Bảo vệ dữ liệu
 
-![Sơ đồ kiến trúc hệ thống](./architecture-diagram.png)
+- S3 nên bật block public access.
+- DynamoDB không public trực tiếp ra internet.
+- Lambda sử dụng IAM Role với quyền tối thiểu.
+- OpenAI API key không được hardcode trong frontend.
+- Không log toàn bộ request nếu request chứa token hoặc dữ liệu nhạy cảm.
 
-### D. Tài Liệu Tham Khảo
+### 6.4. Bảo vệ vận hành
 
-1. [Amazon Textract Developer Guide](https://docs.aws.amazon.com/textract/latest/dg/what-is.html)  
-2. [Amazon Bedrock Overview](https://docs.aws.amazon.com/bedrock/)  
-3. [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/)  
-4. [AWS Pricing Calculator](https://aws.amazon.com/vi/aws-cost-management/aws-pricing-calculator/)  
-5. [Amazon Cognito Best Practices](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html)
+- CloudWatch dùng để theo dõi lỗi.
+- IAM Role chỉ cấp quyền cần thiết.
+- Có thể dùng AWS Secrets Manager để quản lý secret.
+- Có thể bổ sung CloudTrail hoặc WAF nếu đưa vào môi trường production.
+
+---
+
+## ⚙️ 7. Triển khai kỹ thuật
+
+### 📌 Các giai đoạn triển khai
+
+#### Giai đoạn 1: Chuẩn bị môi trường AWS
+
+- Tạo S3 bucket để lưu hóa đơn.
+- Tạo DynamoDB table `InvoiceData`.
+- Tạo Cognito User Pool.
+- Tạo Lambda functions.
+- Cấu hình IAM Roles.
+- Cấu hình API Gateway routes.
+- Chuẩn bị OpenAI API key ở backend.
+
+#### Giai đoạn 2: Xây dựng upload flow
+
+- Tạo `POST /uploads` trên API Gateway.
+- Tạo `UploadInvoiceFileFunction`.
+- Frontend chuyển file sang Base64.
+- Lambda decode Base64 và upload file vào S3.
+- Kiểm thử upload bằng frontend và Postman.
+
+#### Giai đoạn 3: Xây dựng AI processing flow
+
+- Cấu hình S3 Event Notification.
+- Tạo `ProcessInvoiceFunction`.
+- Lambda gọi Amazon Textract để OCR.
+- Lambda gửi kết quả OCR sang OpenAI API.
+- Lambda lưu dữ liệu chuẩn hóa vào DynamoDB.
+- Ghi log xử lý vào CloudWatch.
+
+#### Giai đoạn 4: Xây dựng invoice management API
+
+- Tạo `InvoiceManagementFunction`.
+- Tạo các API routes:
+  - `GET /invoice`
+  - `GET /invoice/{id}`
+  - `GET /invoice?name=<customer_name>`
+  - `PATCH /invoice/tags/{id}`
+  - `PATCH /invoice/starred/{id}`
+- Kiểm thử API bằng Postman.
+- Chuẩn hóa dữ liệu trả về cho frontend.
+
+#### Giai đoạn 5: Xây dựng frontend
+
+- Xây dựng React app.
+- Tích hợp Cognito bằng `aws-amplify`.
+- Tích hợp API Gateway endpoints bằng `.env`.
+- Tạo giao diện upload, danh sách, chi tiết, search, tags, starred, sort, filter và export Excel.
+- Deploy frontend bằng AWS Amplify Hosting.
+
+#### Giai đoạn 6: Kiểm thử và hoàn thiện
+
+- Kiểm thử upload hóa đơn.
+- Kiểm thử lấy danh sách hóa đơn.
+- Kiểm thử tìm kiếm theo ID và tên khách hàng.
+- Kiểm thử cập nhật tags và starred.
+- Kiểm thử CORS.
+- Kiểm tra CloudWatch Logs.
+- Chỉnh sửa lỗi dữ liệu như `Tags/tags`, `Starred/IsStarred`, `CustomerName` top-level hoặc trong `ExtractedData`.
+
+---
+
+## 🧪 8. Chiến lược kiểm thử
+
+### 8.1. Kiểm thử chức năng
+
+| Chức năng | Kết quả mong đợi |
+|---|---|
+| Upload hóa đơn | File được lưu vào S3. |
+| S3 trigger | Lambda xử lý được kích hoạt. |
+| Textract OCR | Trích xuất được văn bản từ hóa đơn. |
+| OpenAI normalization | Trả về JSON hóa đơn có cấu trúc. |
+| Lưu DynamoDB | Item được lưu vào table `InvoiceData`. |
+| GET `/invoice` | Trả về danh sách hóa đơn. |
+| GET `/invoice/{id}` | Trả về chi tiết hóa đơn. |
+| GET `/invoice?name=` | Tìm được hóa đơn theo khách hàng. |
+| PATCH tags | Cập nhật tags thành công. |
+| PATCH starred | Cập nhật trạng thái starred thành công. |
+
+### 8.2. Kiểm thử bảo mật
+
+- Kiểm tra CORS.
+- Kiểm tra việc không lộ OpenAI API key ở frontend.
+- Kiểm tra IAM Role của Lambda.
+- Kiểm tra S3 bucket không public.
+- Kiểm tra Cognito login/logout.
+- Nếu dùng Cognito Authorizer, kiểm tra request có và không có token.
+
+### 8.3. Kiểm thử lỗi
+
+| Trường hợp lỗi | Cách xử lý |
+|---|---|
+| File không hợp lệ | Frontend hiển thị thông báo lỗi. |
+| API Gateway sai route | Kiểm tra lỗi `Missing Authentication Token`. |
+| Lambda thiếu biến môi trường | Kiểm tra CloudWatch Logs. |
+| DynamoDB không có item | Trả về lỗi 404 phù hợp. |
+| Textract lỗi | Ghi `ProcessStatus = FAILED`. |
+| OpenAI API lỗi | Ghi log và trả trạng thái xử lý thất bại. |
+
+---
+
+## 🗺️ 9. Lộ trình và cột mốc
+
+### 📆 Lộ trình dự án
+
+| Tuần | Giai đoạn | Mục tiêu |
+|---|---|---|
+| Tuần 1 | Thiết kế kiến trúc và setup AWS | Tạo S3, DynamoDB, Lambda, Cognito, API Gateway. |
+| Tuần 2 | Upload flow | Frontend upload file qua API Gateway đến S3. |
+| Tuần 3 | AI processing flow | S3 trigger Lambda, Textract OCR, OpenAI API normalization. |
+| Tuần 4 | Invoice management API | GET/PATCH APIs, DynamoDB query/update. |
+| Tuần 5 | Frontend hoàn chỉnh | Upload, list, detail, search, tags, starred, export Excel. |
+| Tuần 6 | Kiểm thử và deploy | Postman test, CloudWatch debug, deploy Amplify Hosting. |
+
+### 📌 Cột mốc quan trọng
+
+| STT | Cột mốc | Kết quả đầu ra |
+|---|---|---|
+| 1 | Hoàn thiện sơ đồ kiến trúc | Sơ đồ đúng luồng AWS + OpenAI API. |
+| 2 | Upload hóa đơn thành công | File được lưu trong S3 `uploads/`. |
+| 3 | Xử lý hóa đơn thành công | Textract + OpenAI trả dữ liệu có cấu trúc. |
+| 4 | Lưu DynamoDB thành công | Item xuất hiện trong `InvoiceData`. |
+| 5 | API truy xuất hoạt động | GET và PATCH hoạt động bằng Postman. |
+| 6 | Frontend tích hợp hoàn chỉnh | Người dùng có thể quản lý hóa đơn trên web. |
+| 7 | Deploy Amplify Hosting | Có URL public để truy cập frontend. |
+| 8 | Hoàn thiện tài liệu | Có hướng dẫn triển khai, kiểm thử và cleanup. |
+
+---
+
+## 💰 10. Ước tính ngân sách
+
+### 📦 Chi phí hạ tầng AWS
+
+| Dịch vụ | Ước tính chi phí/tháng | Ghi chú |
+|---|---:|---|
+| Amazon S3 | ~$0.23 | Lưu file hóa đơn dung lượng nhỏ. |
+| AWS Lambda | ~$1 – $3 | Tùy số lượt gọi và thời gian chạy. |
+| Amazon Textract | ~$4 – $6 | Tùy số trang xử lý mỗi tháng. |
+| Amazon DynamoDB | ~$1 – $3 | Dùng On-Demand cho MVP. |
+| API Gateway | ~$1 – $3 | Phụ thuộc số request. |
+| Amazon Cognito | ~$0 – $1 | Phù hợp MVP với số lượng user nhỏ. |
+| Amplify Hosting | ~$1 – $3 | Hosting frontend và bandwidth thấp. |
+| CloudWatch Logs | ~$0 – $2 | Phụ thuộc dung lượng log. |
+| Secrets Manager *(optional)* | ~$0.40/secret/tháng | Nếu dùng để lưu OpenAI API key. |
+| Route 53 *(optional)* | ~$0.50/tháng + domain | Chỉ dùng nếu có custom domain. |
+
+### 🤖 Chi phí OpenAI API
+
+OpenAI API là dịch vụ bên ngoài AWS. Chi phí phụ thuộc vào:
+
+- Model được sử dụng.
+- Số lượng hóa đơn xử lý.
+- Độ dài nội dung OCR gửi lên model.
+- Số token input và output.
+
+Trong giai đoạn MVP, có thể giới hạn prompt và chỉ gửi phần OCR cần thiết để giảm chi phí.
+
+{{% notice info %}}
+Chi phí OpenAI API nên được theo dõi riêng trong OpenAI dashboard vì không hiển thị trong AWS Billing.
+{{% /notice %}}
+
+### 👉 Tổng chi phí ước tính
+
+Với quy mô MVP nhỏ, chi phí AWS có thể dao động khoảng:
+
+```txt
+~$10 – $30 USD/tháng
+```
+
+Chưa bao gồm chi phí OpenAI API và domain tùy chọn.
+
+---
+
+## ⚠️ 11. Đánh giá rủi ro
+
+### 📋 Ma trận rủi ro
+
+| ID | Nguy cơ | Mức độ tác động | Khả năng xảy ra | Mức độ rủi ro |
+|---|---|---|---|---|
+| R1 | Textract đọc sai hóa đơn mờ hoặc scan lệch | Trung bình | Cao | Cao |
+| R2 | OpenAI API chuẩn hóa sai trường dữ liệu | Cao | Trung bình | Cao |
+| R3 | OpenAI API key bị lộ | Rất cao | Thấp | Cao |
+| R4 | Lambda lỗi do thiếu quyền IAM | Cao | Trung bình | Cao |
+| R5 | API Gateway lỗi CORS hoặc sai route | Trung bình | Cao | Cao |
+| R6 | DynamoDB lưu sai field như `Tags/tags`, `Starred/IsStarred` | Trung bình | Trung bình | Trung bình |
+| R7 | Chi phí tăng do log hoặc request nhiều | Trung bình | Trung bình | Trung bình |
+| R8 | Người dùng upload file quá lớn hoặc sai định dạng | Trung bình | Trung bình | Trung bình |
+
+### 🛡️ Giải pháp giảm thiểu
+
+| Rủi ro | Biện pháp |
+|---|---|
+| R1 | Hướng dẫn upload file rõ nét, hỗ trợ kiểm tra file trước xử lý. |
+| R2 | Thiết kế prompt rõ ràng, validate JSON trả về, lưu trạng thái lỗi nếu parsing thất bại. |
+| R3 | Không lưu key ở frontend, dùng Lambda env hoặc Secrets Manager. |
+| R4 | Cấp IAM Role theo nguyên tắc least privilege. |
+| R5 | Cấu hình CORS đầy đủ, kiểm thử bằng Postman và frontend. |
+| R6 | Chuẩn hóa field trả về ở Lambda trước khi gửi cho frontend. |
+| R7 | Cấu hình log hợp lý, cleanup CloudWatch Logs sau lab. |
+| R8 | Giới hạn loại file và dung lượng upload. |
+
+---
+
+## 🎯 12. Kết quả mong đợi
+
+Sau khi hoàn thành project, hệ thống đạt được các kết quả sau:
+
+- Người dùng có thể đăng ký và đăng nhập bằng Amazon Cognito.
+- Frontend React được deploy trên AWS Amplify Hosting.
+- Người dùng có thể upload hóa đơn từ giao diện web.
+- File hóa đơn được lưu vào Amazon S3.
+- S3 trigger kích hoạt Lambda xử lý hóa đơn.
+- Amazon Textract trích xuất được nội dung hóa đơn.
+- OpenAI API chuẩn hóa nội dung OCR thành dữ liệu có cấu trúc.
+- Dữ liệu được lưu vào DynamoDB table `InvoiceData`.
+- Người dùng có thể xem danh sách và chi tiết hóa đơn.
+- Người dùng có thể tìm kiếm theo ID hoặc tên khách hàng.
+- Người dùng có thể cập nhật tags và starred.
+- Người dùng có thể lọc, sắp xếp và export dữ liệu ra Excel.
+- CloudWatch hỗ trợ theo dõi log và debug lỗi.
+
+### 📊 Chỉ số đánh giá thành công
+
+| Chỉ số | Mục tiêu |
+|---|---|
+| Upload thành công | ≥ 95% với file hợp lệ. |
+| OCR thành công | ≥ 90% với hóa đơn rõ nét. |
+| API hoạt động ổn định | GET/PATCH/POST trả đúng response. |
+| Dữ liệu lưu đúng cấu trúc | Có `InvoiceId`, `ExtractedData`, `TotalAmount`, `Currency`. |
+| Frontend dùng được | Người dùng thao tác được toàn bộ luồng chính. |
+| Chi phí MVP | Duy trì trong mức thấp, phù hợp demo/lab. |
+
+---
+
+## 📎 Phụ lục
+
+### A. Thông số kỹ thuật
+
+| Hạng mục | Thông tin kỹ thuật |
+|---|---|
+| Frontend | ReactJS, AWS Amplify Hosting |
+| Authentication | Amazon Cognito User Pool |
+| Frontend libraries | `aws-amplify`, `@aws-amplify/ui-react`, `xlsx` |
+| Backend | AWS Lambda |
+| Lambda runtime | Python với boto3 |
+| API | Amazon API Gateway REST API |
+| File storage | Amazon S3 |
+| OCR | Amazon Textract |
+| AI normalization | OpenAI API |
+| Database | Amazon DynamoDB |
+| Monitoring | Amazon CloudWatch |
+| Optional secret storage | AWS Secrets Manager |
+| Optional DNS | Amazon Route 53 |
+| Architecture | Serverless, event-driven |
+
+### B. API routes
+
+| Method | Route | Lambda |
+|---|---|---|
+| `POST` | `/uploads` | `UploadInvoiceFileFunction` |
+| `GET` | `/invoice` | `InvoiceManagementFunction` |
+| `GET` | `/invoice/{id}` | `InvoiceManagementFunction` |
+| `GET` | `/invoice?name=<customer_name>` | `InvoiceManagementFunction` |
+| `PATCH` | `/invoice/tags/{id}` | `InvoiceManagementFunction` |
+| `PATCH` | `/invoice/starred/{id}` | `InvoiceManagementFunction` |
+
+### C. Environment variables frontend
+
+```txt
+REACT_APP_AWS_REGION=ap-southeast-1
+REACT_APP_USER_POOL_ID=ap-southeast-1_xxxxxxxxx
+REACT_APP_USER_POOL_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxx
+REACT_APP_API_UPLOAD_URL=https://<api-id>.execute-api.ap-southeast-1.amazonaws.com/dev/uploads
+REACT_APP_API_INVOICE_URL=https://<api-id>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice
+REACT_APP_API_UPDATE_TAGS_URL=https://<api-id>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/tags
+REACT_APP_API_UPDATE_STARRED_URL=https://<api-id>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/starred
+REACT_APP_SEND_AUTH_TOKEN=false
+```
+
+### D. DynamoDB table
+
+```txt
+Table name: InvoiceData
+Primary key: InvoiceId
+Optional GSI:
+- CustomerName-index
+- StarredInvoicesIndex
+```
+
+### E. Tài liệu tham khảo
+
+1. Amazon Textract Documentation  
+2. AWS Lambda Documentation  
+3. Amazon API Gateway Documentation  
+4. Amazon DynamoDB Documentation  
+5. Amazon Cognito Documentation  
+6. AWS Amplify Hosting Documentation  
+7. OpenAI API Documentation  
+8. AWS CloudWatch Documentation  
+
+---
+
+## ✅ Kết luận
+
+Đề xuất **Serverless AI Invoice Scanner** phù hợp với mục tiêu xây dựng một hệ thống xử lý hóa đơn tự động, dễ triển khai và dễ mở rộng. So với phiên bản proposal ban đầu, bản cập nhật này đã điều chỉnh đúng theo project thực tế:
+
+- Thay Amazon Bedrock bằng OpenAI API.
+- Làm rõ vai trò của AWS Amplify Hosting.
+- Làm rõ Cognito dùng cho frontend authentication.
+- Bổ sung ba Lambda functions chính.
+- Bổ sung API routes thực tế.
+- Bổ sung tags, starred, search, filter, sort và export Excel.
+- Cập nhật luồng xử lý đúng: API Gateway → Upload Lambda → S3 → Processing Lambda → Textract → OpenAI API → DynamoDB.
+- Bổ sung cleanup và giám sát qua CloudWatch.
